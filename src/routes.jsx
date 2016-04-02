@@ -11,12 +11,14 @@ import RegisterAux from './components/register/RegisterAux.jsx';
 import RegisterSad from './components/register/RegisterSad.jsx';
 import Home from './components/home/Home.jsx';
 
+import Bootstrap from './core/Bootstrap.js';
+
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={Land}/>
 	<Route path="/login" component={Login}/>
-	<Route path="/register/aux" component={RegisterAux}/>
+		<Route path="/register/aux" component={RegisterAux}/>
 	<Route path="/register/sad" component={RegisterSad}/>
-	<Route path="/home" component={Home}/>
+		<Route path="/home" component={Home}/>
   </Router>
 ), document.getElementById('app'))

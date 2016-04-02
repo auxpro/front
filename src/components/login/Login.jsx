@@ -1,11 +1,14 @@
 import React from 'react';
 import Utils from '../../utils/Utils';
 import CheckAuth from '../../actions/CheckAuth';
+import Dispatcher from '../../core/Dispatcher';
+import ActionRegistry from '../../core/ActionRegistry';
+import StoreRegistry from '../../core/StoreRegistry';
 
 /**
  *
  */
-export default class Login extends React.Component {
+class Login extends React.Component {
 
 	/**
 	 *
@@ -13,6 +16,7 @@ export default class Login extends React.Component {
 	 */
 	constructor(props) {
 		super(props);
+		StoreRegistry.getStore('LOGIN_STORE').register(this, this.onLogon);
 	}
 
 	/**
@@ -29,8 +33,13 @@ export default class Login extends React.Component {
 		event.preventDefault();
 		let user = this.refs.user.value
     	let pass = this.refs.pass.value
-		let action = new CheckAuth();
-		action.do({user: user, pass: pass, resolve: this.navToHome.bind(this), reject: () => {} });
+    	let params = {
+    		user: user, 
+    		pass: pass
+    	};
+    	Dispatcher.issue("CHECK_CREDENTIALS", params);
+		//let action = new CheckAuth();
+		//action.do();
 	}
 
 	/**
@@ -47,4 +56,11 @@ export default class Login extends React.Component {
     		</form>
     	</div>
     );}
+
+    onLogon() {
+    	console.log('reached controller callback');
+    	console.log(StoreRegistry.getStore('LOGIN_STORE')._content);
+    }
 }
+
+export default Login;

@@ -1,6 +1,6 @@
 import StoreBase from '../core/StoreBase.js';
 
-export default class RestService extends StoreBase {
+export default class UserStore extends StoreBase {
 	constructor(props) {
 		super(props);
 	}

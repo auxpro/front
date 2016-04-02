@@ -3,7 +3,7 @@ var webpack = require('webpack');
  
 module.exports = {
 
-  entry: './src/app.jsx',
+  entry: './src/routes.jsx',
 
   output: { 
     path: __dirname, 
