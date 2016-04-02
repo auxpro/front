@@ -15,8 +15,7 @@ class Login extends React.Component {
 	 * @constructor
 	 */
 	constructor(props) {
-		super(props);
-		StoreRegistry.getStore('LOGIN_STORE').register(this, this.onLogon);
+		super(props);        
 	}
 
 	/**
@@ -57,10 +56,7 @@ class Login extends React.Component {
     	</div>
     );}
 
-    onLogon() {
-    	console.log('reached controller callback');
-    	console.log(StoreRegistry.getStore('LOGIN_STORE')._content);
-    }
+    
 }
 
 export default Login;

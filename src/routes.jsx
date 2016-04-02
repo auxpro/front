@@ -3,8 +3,9 @@ import React from 'react';
 /*eslint-enable no-unused-vars */
 import ReactDOM from 'react-dom';
 
-import { Router, Route, hashHistory } from 'react-router'
+import { Router, Route, hashHistory, DefaultRoute } from 'react-router'
 
+import App from './components/app/App.jsx';
 import Land from './components/land/Land.jsx';
 import Login from './components/login/Login.jsx';
 import RegisterAux from './components/register/RegisterAux.jsx';
@@ -15,10 +16,10 @@ import Bootstrap from './core/Bootstrap.js';
 
 ReactDOM.render((
   <Router history={hashHistory}>
-    <Route path="/" component={Land}/>
+  	<Route path="/" component={Land}/>
 	<Route path="/login" component={Login}/>
-		<Route path="/register/aux" component={RegisterAux}/>
+	<Route path="/register/aux" component={RegisterAux}/>
 	<Route path="/register/sad" component={RegisterSad}/>
-		<Route path="/home" component={Home}/>
+	<Route path="/home" component={Home}/>
   </Router>
 ), document.getElementById('app'))

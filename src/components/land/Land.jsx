@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import StoreRegistry from '../../core/StoreRegistry';
 
 /**
  *
@@ -8,6 +9,7 @@ export default class Land extends React.Component {
 
     constructor(props) {
         super(props);
+        StoreRegistry.getStore('LOGIN_STORE').register(this, this.onLogon.bind(this));
     }
 
     /**
@@ -30,6 +32,17 @@ export default class Land extends React.Component {
     navToRegisterSad() {
         this.props.history.push('/register/sad');
     };
+
+    /**
+     *
+     */
+    onLogon() {
+        let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
+        if (logged) {
+            this.props.history.push('/home');
+        }
+    }
+
     /**
      *
      */
