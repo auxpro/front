@@ -14,18 +14,26 @@ class Dispatcher extends ObjectBase {
 	constructor() {
 		super({ name: 'Dispatcher'});
 		this._callbacks = [];
+		this._errors = [];
 	}
 
 	/**
 	 * 
 	 * @public
 	 */
-	register(action, callback) {
+	register(action, callback, error) {
 		var a = ActionRegistry.getAction(action);
 		if (a) {
-			console.log('Registered callback on action: ' + action);
-			this._callbacks[a.getName()] = this._callbacks[a.getName()] || [];
-			this._callbacks[a.getName()].push(callback);
+			if (callback) {
+				console.log('Registered callback on action: ' + action);
+				this._callbacks[a.getName()] = this._callbacks[a.getName()] || [];
+				this._callbacks[a.getName()].push(callback);
+			}
+			if (error) {
+				console.log('Registered error callback on action: ' + action);
+				this._errors[a.getName()] = this._errors[a.getName()] || [];
+				this._errors[a.getName()].push(error);
+			}
 		} else {
 			console.error('Unknown action: ' + action);
 		}
@@ -39,9 +47,8 @@ class Dispatcher extends ObjectBase {
 		var a = ActionRegistry.getAction(action);
 		this._exec(action, param).
 		then( (result) => {
-			console.log("Dispatcher.issue >> OK " + action);
-			console.log("    ( " + JSON.stringify(param) + " )");
-			console.log(">> " + result);
+			console.log("Dispatcher.issue >> OK " + action + " (" + JSON.stringify(param) + ")");
+			console.log(result);
 			var callbacks = this._callbacks[a.getName()] || [];
 			var length = callbacks.length;
 			for (var i = 0 ; i < length ; i++) {
@@ -49,9 +56,13 @@ class Dispatcher extends ObjectBase {
 			}
 		}).
 		catch( (error) => {
-			console.log("Dispatcher.issue >> ERR " + action);
-			console.log("    ( " + JSON.stringify(param) + " )");
-			console.log(">> " + error);
+			console.log("Dispatcher.issue >> ERR " + action + " (" + JSON.stringify(param) + ")");
+			console.log(error);
+			var errors = this._errors[a.getName()] || [];
+			var length = errors.length;
+			for (var i = 0 ; i < length ; i++) {
+				errors[i](error);
+			}
 		});
 	}
 

@@ -16,10 +16,6 @@ import Bootstrap from './core/Bootstrap.js';
 
 ReactDOM.render((
   <Router history={hashHistory}>
-  	<Route path="/" component={Land}/>
-	<Route path="/login" component={Login}/>
-	<Route path="/register/aux" component={RegisterAux}/>
-	<Route path="/register/sad" component={RegisterSad}/>
-	<Route path="/home" component={Home}/>
+  	<Route path="/" component={App}/>
   </Router>
 ), document.getElementById('app'))

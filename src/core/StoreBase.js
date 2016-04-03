@@ -56,16 +56,20 @@ export default class StoreBase extends ObjectBase {
 	 * 
 	 */
 	getData(path) {
-		let spath = path.split('/');
-		let current = this._content;
-		for (let i = 0 ; i < spath.length ; i++) {
-			if (spath[i] !== '') {
-				current = current[spath[i]]
-				if (!current) {
-					return undefined;
+		if (path) {
+			let spath = path.split('/');
+			let current = this._content;
+			for (let i = 0 ; i < spath.length ; i++) {
+				if (spath[i] !== '') {
+					current = current[spath[i]]
+					if (!current) {
+						return undefined;
+					}
 				}
 			}
+			return current;
+		} else {
+			return this._content;
 		}
-		return current;
 	}
 }

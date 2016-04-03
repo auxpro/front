@@ -1,5 +1,9 @@
-import ActionBase from '../core/ActionBase.js';
+// Import utilities module
 import Utils from '../utils/Utils.js';
+// Import core modules
+import ActionBase from '../core/ActionBase.js';
+import StoreRegistry from '../core/StoreRegistry.js';
+// Import services
 import RestService from '../services/rest/RestService.js';
 
 var CheckCredentials = new ActionBase({
@@ -14,9 +18,9 @@ var CheckCredentials = new ActionBase({
  */
 CheckCredentials.do = function (args) {
 	Utils.checkMembers(args, ['user', 'pass']);
-	var params = {
-		token: Utils.encode(args.user, args.pass)
-	}
+	var token = Utils.encode(args.user, args.pass);
+	StoreRegistry.getStore('LOGIN_STORE').setToken(token);
+	var params = { token: token };
 	return RestService.getAuth(params);
 }
 

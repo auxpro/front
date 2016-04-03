@@ -1,3 +1,5 @@
+import Utils from '../utils/Utils.js';
+// Import core modules
 import Dispatcher from '../core/Dispatcher.js';
 import StoreBase from '../core/StoreBase.js';
 
@@ -8,9 +10,12 @@ var LoginStore = new StoreBase ({
 	content: DEFAULT_CONTENT
 });
 
+LoginStore.setToken = function (token) {
+	LoginStore._content = Utils.merge(LoginStore._content, { token: token });
+}
 LoginStore.onLogon = function (args) {
 	args.logged = true;
-	LoginStore._content = args;
+	LoginStore._content = Utils.merge(LoginStore._content, args);
 	LoginStore.notify();
 };
 

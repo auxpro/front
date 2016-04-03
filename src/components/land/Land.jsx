@@ -1,57 +1,63 @@
+// React Modules
 import React from 'react';
-import ReactDOM from 'react-dom';
+// Core Modules
 import StoreRegistry from '../../core/StoreRegistry';
+// Components
+import Login from '../login/Login.jsx';
+import RegisterAux from '../register/RegisterAux.jsx';
+import RegisterSad from '../register/RegisterSad.jsx';
+
 
 /**
  *
  */ 
 export default class Land extends React.Component {
 
+    /**
+     *
+     */
     constructor(props) {
         super(props);
-        StoreRegistry.getStore('LOGIN_STORE').register(this, this.onLogon.bind(this));
+        this.state = {
+            currentAuth: 'none'
+        };
     }
 
     /**
      *
      */
-    navToLogin() {
-       this.props.history.push('/login');
+    currentAuthSetter(value) {
+        return function () {
+            this.setState({ currentAuth: value });
+        };
     };
 
     /**
      *
      */
-    navToRegisterAux() {
-        this.props.history.push('/register/aux');
-    };
-
-    /**
-     *
-     */
-    navToRegisterSad() {
-        this.props.history.push('/register/sad');
-    };
-
-    /**
-     *
-     */
-    onLogon() {
-        let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
-        if (logged) {
-            this.props.history.push('/home');
+    render() { 
+        switch (this.state.currentAuth) {
+        case 'login':
+            return (
+            <Login/>
+            );
+        case 'regAux':
+            return (
+            <RegisterAux/>
+            );
+        case 'regSad':
+            return (
+            <RegisterSad/>
+            );
+        default:
+            return (
+            <div>
+                <button onClick={this.currentAuthSetter('login').bind(this)}>Se Connecter</button>
+                <button onClick={this.currentAuthSetter('regAux').bind(this)}>Creer Compte Auxiliaire</button>
+                <button onClick={this.currentAuthSetter('regSad').bind(this)}>Creer Compte Societe</button>
+                <button>Acces Invite</button>
+            </div>
+            );
         }
-    }
-
-    /**
-     *
-     */
-    render() { return (
-      <div>
-            <button onClick={this.navToLogin.bind(this)}>Se Connecter</button>
-            <button onClick={this.navToRegisterAux.bind(this)}>Creer Compte Auxiliaire</button>
-            <button onClick={this.navToRegisterSad.bind(this)}>Creer Compte Societe</button>
-            <button>Acces Invite</button>
-        </div>
-    )};
+    };
 }

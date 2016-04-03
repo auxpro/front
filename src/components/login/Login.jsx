@@ -1,8 +1,9 @@
+// Import React core
 import React from 'react';
+// Import utilities
 import Utils from '../../utils/Utils';
-import CheckAuth from '../../actions/CheckAuth';
+// Import core modules
 import Dispatcher from '../../core/Dispatcher';
-import ActionRegistry from '../../core/ActionRegistry';
 import StoreRegistry from '../../core/StoreRegistry';
 
 /**
@@ -15,30 +16,30 @@ class Login extends React.Component {
 	 * @constructor
 	 */
 	constructor(props) {
-		super(props);        
+		super(props);
+        this.state = {
+            error: ''
+        };
+        StoreRegistry.getStore('ERROR_STORE').register(this, this.onLogonError.bind(this));
 	}
 
-	/**
-     *
-     */
-    navToHome() {
-       this.props.history.push('/home');
-    };
+    onLogonError() {
+        let error = StoreRegistry.getStore('ERROR_STORE').getData('/logon/error');
+        if (error) {
+            this.setState({ error: 'Echec de connexion' });
+        }
+    }
 
     /**
      *
      */
 	login(event) {
 		event.preventDefault();
-		let user = this.refs.user.value
-    	let pass = this.refs.pass.value
     	let params = {
-    		user: user, 
-    		pass: pass
+    		user: this.refs.user.value, 
+    		pass: this.refs.pass.value
     	};
     	Dispatcher.issue("CHECK_CREDENTIALS", params);
-		//let action = new CheckAuth();
-		//action.do();
 	}
 
 	/**
@@ -51,6 +52,9 @@ class Login extends React.Component {
     				<input type='text' ref='user' placeholder="Nom d'utilisateur ou addresse électronique" />
     				<input type='password' ref='pass' placeholder='Mot de passe' />
     			</div>
+                <div>
+                    {this.state.error}
+                </div>
     			<button type='submit' onClick={this.login.bind(this)}>Connexion</button>
     		</form>
     	</div>

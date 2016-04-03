@@ -15,8 +15,12 @@ export default class RestService {
 					if (xhr.readyState === 4) {
 						if (xhr.status === 200) {
 							resolve(JSON.parse(xhr.responseText));
+						} else if (xhr.status === 401) {
+							reject({ error: 'UNAUTHORIZED', status: 401 });
+						} else if (xhr.status === 500) {
+							reject({ error: 'INTERNAL_ERROR', status: 500 });
 						} else {
-							reject(xhr);
+							reject(JSON.parse(xhr.responseText));
 						}
 					} else {
 					}
@@ -69,4 +73,33 @@ export default class RestService {
         reqParam.data = args.data;
         return RestService._request(reqParam);
     };
+
+
+	/**
+	 *
+	 * @param {object} [args]
+	 * @param {string} [args.token] valid session token to be passed as header
+	 * @returns a Promise object 
+	 */
+	static getAuxiliaries (args) {
+		var reqParam = {};
+		reqParam.url = '/auxiliaries';
+		reqParam.method = 'GET';
+		reqParam.token = args.token;
+		return RestService._request(reqParam);
+	};
+
+	/**
+	 *
+	 * @param {object} [args]
+	 * @param {string} [args.token] valid session token to be passed as header
+	 * @returns a Promise object 
+	 */
+	static getServices (args) {
+		var reqParam = {};
+		reqParam.url = '/services';
+		reqParam.method = 'GET';
+		reqParam.token = args.token;
+		return RestService._request(reqParam);
+	};
 }
