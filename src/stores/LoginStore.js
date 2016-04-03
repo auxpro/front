@@ -18,6 +18,10 @@ LoginStore.onLogon = function (args) {
 	LoginStore._content = Utils.merge(LoginStore._content, args);
 	LoginStore.notify();
 };
+LoginStore.reset = function () {
+	LoginStore._content = DEFAULT_CONTENT;
+	LoginStore.notify();
+};
 
 Dispatcher.register('CHECK_CREDENTIALS', LoginStore.onLogon);
 

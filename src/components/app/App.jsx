@@ -16,6 +16,8 @@ export default class App extends React.Component {
 		let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
 		if (logged) {
 			this.setState({ isLogged: true });
+		} else {
+			this.setState({ isLogged: false });
 		}
 	}
 

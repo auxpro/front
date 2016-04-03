@@ -6,16 +6,13 @@ import StoreRegistry from '../core/StoreRegistry.js';
 // Import services
 import RestService from '../services/rest/RestService.js';
 
-var CheckCredentials = new ActionBase({
-	name: 'CHECK_CREDENTIALS'
-});
-
 /**
  *
  * @param {object}   [args]
  * @param {string}   [args.user]
  * @param {string}   [args.pass]
  */
+var CheckCredentials = new ActionBase({	name: 'CHECK_CREDENTIALS' });
 CheckCredentials.do = function (args) {
 	Utils.checkMembers(args, ['user', 'pass']);
 	var token = Utils.encode(args.user, args.pass);
@@ -24,4 +21,13 @@ CheckCredentials.do = function (args) {
 	return RestService.getAuth(params);
 }
 
-export default CheckCredentials;
+/**
+ *
+ */
+var Logout = new ActionBase({ name: 'LOGOUT' });
+Logout.do = function () {
+	StoreRegistry.getStore('LOGIN_STORE').reset();
+	return new Promise(function (resolve, reject) {
+		resolve();
+	});
+}

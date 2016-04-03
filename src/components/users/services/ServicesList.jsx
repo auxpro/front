@@ -1,11 +1,9 @@
 // Import React core
 import React from 'react';
-// Import utilities
-import Utils from '../../../utils/Utils';
 // Import components
-import AuxiliaryItem from './AuxiliaryItem.jsx';
+import ServiceItem from './ServiceItem.jsx';
 
-class AuxiliariesList extends React.Component {
+class ServicesList extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -14,19 +12,18 @@ class AuxiliariesList extends React.Component {
     render() { 
         var nodes = this.props.data.map(function(user) {
             return (
-                <AuxiliaryItem 
+                <ServiceItem 
                     key={user.name}
                     name={user.name} 
                     email={user.email}
-                    firstName={user.firstName}
-                    lastName={user.lastName}
+                    society={user.society}
                     phone={user.phone}/>
             );
         });
         return (
     	<table>    
             <thead>
-                <AuxiliaryItem name='Nom' key='header' email='Address électronique' firstName='Prénom' lastName='Nom' phone='Téléphone'/>
+                <ServiceItem name='Nom' key='header' email='Address électronique' society='Société' lastName='Nom' phone='Téléphone'/>
             </thead>
             <tbody>
                 {nodes}
@@ -37,4 +34,4 @@ class AuxiliariesList extends React.Component {
     
 }
 
-export default AuxiliariesList;
+export default ServicesList;

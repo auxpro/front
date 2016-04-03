@@ -45,25 +45,29 @@ class Dispatcher extends ObjectBase {
 	 */
 	issue (action, param) {
 		var a = ActionRegistry.getAction(action);
-		this._exec(action, param).
-		then( (result) => {
-			console.log("Dispatcher.issue >> OK " + action + " (" + JSON.stringify(param) + ")");
-			console.log(result);
-			var callbacks = this._callbacks[a.getName()] || [];
-			var length = callbacks.length;
-			for (var i = 0 ; i < length ; i++) {
-				callbacks[i](result);
-			}
-		}).
-		catch( (error) => {
-			console.log("Dispatcher.issue >> ERR " + action + " (" + JSON.stringify(param) + ")");
-			console.log(error);
-			var errors = this._errors[a.getName()] || [];
-			var length = errors.length;
-			for (var i = 0 ; i < length ; i++) {
-				errors[i](error);
-			}
-		});
+		if (a) {
+			this._exec(action, param).
+			then( (result) => {
+				console.log("Dispatcher.issue >> OK " + action + " (" + JSON.stringify(param) + ")");
+				console.log(result);
+				var callbacks = this._callbacks[a.getName()] || [];
+				var length = callbacks.length;
+				for (var i = 0 ; i < length ; i++) {
+					callbacks[i](result);
+				}
+			}).
+			catch( (error) => {
+				console.log("Dispatcher.issue >> ERR " + action + " (" + JSON.stringify(param) + ")");
+				console.log(error);
+				var errors = this._errors[a.getName()] || [];
+				var length = errors.length;
+				for (var i = 0 ; i < length ; i++) {
+					errors[i](error);
+				}
+			});
+		} else {
+			console.error('Unknown action: ' + action);
+		}
 	}
 
 	/**
