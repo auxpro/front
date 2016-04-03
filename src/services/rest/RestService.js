@@ -59,23 +59,6 @@ export default class RestService {
 	};
 	
 	/**
-     *
-     * @param {object} [args]
-     * @param {string} [args.token] valid session token to be passed as header
-     * @param {object} [args.data]
-     * @returns a Promise object 
-     */
-    static postUser (args) {
-        var reqParam = {};
-        reqParam.url = '/users';
-        reqParam.method = 'POST';
-        reqParam.token = args.token;
-        reqParam.data = args.data;
-        return RestService._request(reqParam);
-    };
-
-
-	/**
 	 *
 	 * @param {object} [args]
 	 * @param {string} [args.token] valid session token to be passed as header
@@ -88,6 +71,20 @@ export default class RestService {
 		reqParam.token = args.token;
 		return RestService._request(reqParam);
 	};
+
+	/**
+     *
+     * @param {object} [args]
+     * @param {object} [args.data]
+     * @returns a Promise object 
+     */
+    static postAuxiliary (args) {
+        var reqParam = {};
+        reqParam.url = '/auxiliaries';
+        reqParam.method = 'POST';
+        reqParam.data = args.data;
+        return RestService._request(reqParam);
+    };
 
 	/**
 	 *

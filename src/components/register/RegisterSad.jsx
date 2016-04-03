@@ -5,6 +5,7 @@ export default class RegisterSad extends React.Component {
 		<div>
 			<h2>Créer un compte Société</h2>
 		  	<div>
+		  		<input placeholder="Nom d'utilisateur"/>
 		  	  	<input placeholder='Addresse électronique'/>
 		  		<input placeholder='Mot de passe'/>
 		  		</div>
