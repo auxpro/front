@@ -12,19 +12,23 @@ class AuxiliariesBox extends React.Component {
 
 	constructor(props) {
 		super(props);
-        StoreRegistry.getStore('AUXILIARY_STORE').register(this, this.onAuxiliaryUpdate.bind(this));
         this.state = {
             data: []
         };
 	}
 
-    onAuxiliaryUpdate() {
-        this.setState({ data: StoreRegistry.getStore('AUXILIARY_STORE').getData('/auxiliaries') });
-    }
-
     componentDidMount () {
+        StoreRegistry.getStore('AUXILIARY_STORE').register(this, this.onAuxiliaryUpdate.bind(this));
         var params = { token: StoreRegistry.getStore('LOGIN_STORE').getData('/token') }
         Dispatcher.issue('GET_AUXILIARIES', params);
+    }
+
+    componentWillUnmount() {
+        StoreRegistry.unregister('AUXILIARY_STORE', this);
+    }
+
+    onAuxiliaryUpdate() {
+        this.setState({ data: StoreRegistry.getStore('AUXILIARY_STORE').getData('/auxiliaries') });
     }
 
     render() { return (

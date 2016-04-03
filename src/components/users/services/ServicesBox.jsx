@@ -12,7 +12,7 @@ class ServicesBox extends React.Component {
 
 	constructor(props) {
 		super(props);
-        StoreRegistry.getStore('SERVICE_STORE').register(this, this.onServiceUpdate.bind(this));
+        
         this.state = {
             data: []
         };
@@ -23,13 +23,19 @@ class ServicesBox extends React.Component {
     }
 
     componentDidMount () {
+        StoreRegistry.register('SERVICE_STORE', this, this.onServiceUpdate.bind(this));
         var params = { token: StoreRegistry.getStore('LOGIN_STORE').getData('/token') }
         Dispatcher.issue('GET_SERVICES', params);
     }
 
+    componentWillUnmount () {
+        console.log('unmounting');
+        StoreRegistry.unregister('SERVICE_STORE', this);
+    }
+
     render() { return (
     	<div>
-    		<h2>Société d'aide a domiocile</h2>
+    		<h2>Société d'aide a domicile</h2>
             <ServicesList data={this.state.data}/>
     	</div>
     );}

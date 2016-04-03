@@ -9,8 +9,15 @@ export default class App extends React.Component {
 		this.state = {
 			isLogged: false
 		};
-		StoreRegistry.getStore('LOGIN_STORE').register(this, this.onLogon.bind(this));
 	}
+
+	componentDidMount() {
+        StoreRegistry.register('LOGIN_STORE', this, this.onLogon.bind(this));
+    }
+
+    componentWillUnmount() {
+        StoreRegistry.unregister('LOGIN_STORE', this);   
+    }
 
 	onLogon() {
 		let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');

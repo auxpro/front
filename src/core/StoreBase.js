@@ -1,14 +1,8 @@
 import ObjectBase from './ObjectBase.js';
 import StoreRegistry from './StoreRegistry.js';
 
-/**
- *
- */
 export default class StoreBase extends ObjectBase {
 
-	/**
-	 *
-	 */
 	constructor(props) {
 		super(props);
 		this._content = props.content || {};
@@ -16,9 +10,6 @@ export default class StoreBase extends ObjectBase {
 		StoreRegistry.registerStore(this);
 	}
 
-	/**
-	 *
-	 */
 	notify() {
 		let length = this._callbacks.length;
 		for (let i = 0 ; i < length ; i++) {
@@ -27,11 +18,8 @@ export default class StoreBase extends ObjectBase {
 		}
 	}
 
-	/**
-	 *
-	 */
 	register(controller, callback) {
-		if (callback) {
+		if (controller && callback) {
 			this._callbacks.push({
 				controller: controller,
 				callback: callback
@@ -39,22 +27,18 @@ export default class StoreBase extends ObjectBase {
 		}
 	}
 
-	/**
-	 *
-	 */
 	unregister(controller) {
 		let length = this._callbacks.length;
 		for (let i = 0 ; i < length ; i++) {
 			let current = this._callbacks[i];
 			if (current.controller === controller) {
-				// remove the controller here
+				this._callbacks.splice(i, 1);
+				i--;
+				length--;
 			}
 		}
 	}
 
-	/**
-	 * 
-	 */
 	getData(path) {
 		if (path) {
 			let spath = path.split('/');

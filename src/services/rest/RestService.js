@@ -102,4 +102,19 @@ export default class RestService {
 		reqParam.token = args.token;
 		return RestService._request(reqParam);
 	};
+
+	/**
+     *
+     * @param {object} [args]
+     * @param {object} [args.data]
+     * @returns a Promise object 
+     */
+    static postService (args) {
+        var reqParam = {};
+        reqParam.url = '/services';
+        reqParam.method = 'POST';
+        reqParam.data = args.data;
+        reqParam.token = args.token;
+        return RestService._request(reqParam);
+    };
 }

@@ -18,6 +18,11 @@ GetServices.do = function (args) {
  *
  */
 let PostService = new ActionBase({ name: 'POST_SERVICE' });
-PostService.do = function () {
-	Utils.checkMembers(args, ['token']);
+PostService.do = function (args) {
+	Utils.checkMembers(args, ['name', 'password', 'email']);
+	var params = {
+		token: Utils.encode('guest', 'guest'),
+		data: args
+	};
+	return RestService.postService(params);
 }

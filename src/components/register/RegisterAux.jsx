@@ -13,6 +13,7 @@ export default class RegisterAux extends React.Component {
     		password: this.refs.password.value,
     		firstName: this.refs.firstName.value,
     		lastName: this.refs.lastName.value,
+    		phone: this.refs.phone.value,
     		address: {
     			address: this.refs.address.value,
     			postalCode: this.refs.postalCode.value,
@@ -34,6 +35,7 @@ export default class RegisterAux extends React.Component {
 		  	<div>
 		 		<input ref='firstName' placeholder='Nom'/>
 		 		<input ref='lastName' placeholder='Prénom'/>
+		 		<input ref='phone' placeholder='Téléphone'/>
 		 	<div>
 		 	</div>
 				<input ref='address' placeholder='Addresse'/>

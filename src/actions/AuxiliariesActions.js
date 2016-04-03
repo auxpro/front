@@ -21,6 +21,5 @@ PostAuxiliary.do = function (args) {
 		token: Utils.encode('guest', 'guest'),
 		data: args
 	};
-	console.log(params);
 	return RestService.postAuxiliary(params);	
 }

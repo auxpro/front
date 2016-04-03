@@ -6,15 +6,8 @@ import Utils from '../../utils/Utils';
 import Dispatcher from '../../core/Dispatcher';
 import StoreRegistry from '../../core/StoreRegistry';
 
-/**
- *
- */
 class Login extends React.Component {
 
-	/**
-	 *
-	 * @constructor
-	 */
 	constructor(props) {
 		super(props);
         this.state = {
@@ -23,11 +16,11 @@ class Login extends React.Component {
 	}
 
     componentDidMount() {
-        StoreRegistry.getStore('ERROR_STORE').register(this, this.onLogonError.bind(this));
+        StoreRegistry.register('ERROR_STORE', this, this.onLogonError.bind(this));
     }
 
     componentWillUnmount() {
-        StoreRegistry.getStore('ERROR_STORE').unregister(this);   
+        StoreRegistry.unregister('ERROR_STORE', this);   
     }
 
     onLogonError() {
@@ -37,9 +30,6 @@ class Login extends React.Component {
         }
     }
 
-    /**
-     *
-     */
 	login(event) {
 		event.preventDefault();
     	let params = {
@@ -49,9 +39,6 @@ class Login extends React.Component {
     	Dispatcher.issue("CHECK_CREDENTIALS", params);
 	}
 
-	/**
-	 * 
-	 */
     render() { return (
     	<div>
     		<form role='form'>
