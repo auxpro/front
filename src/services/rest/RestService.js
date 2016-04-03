@@ -11,6 +11,7 @@ export default class RestService {
 				var xhr = new XMLHttpRequest();
 				xhr.open(reqParam.method, reqParam.url, true);
 				xhr.setRequestHeader(_CONFIG.HEADER_TOKEN, reqParam.token);
+				xhr.setRequestHeader("Content-type", "application/json");
 				xhr.onload = function(oEvt) {
 					if (xhr.readyState === 4) {
 						if (xhr.status === 200) {
@@ -25,7 +26,8 @@ export default class RestService {
 					} else {
 					}
 				};
-				xhr.send(reqParam.data);
+				console.log(JSON.stringify(reqParam.data));
+				xhr.send(JSON.stringify(reqParam.data));
 			});
 		};
 	
@@ -83,6 +85,7 @@ export default class RestService {
         reqParam.url = '/auxiliaries';
         reqParam.method = 'POST';
         reqParam.data = args.data;
+        reqParam.token = args.token;
         return RestService._request(reqParam);
     };
 

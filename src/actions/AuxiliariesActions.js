@@ -16,7 +16,11 @@ GetAuxiliaries.do = function (args) {
  */
 let PostAuxiliary = new ActionBase({ name: 'POST_AUXILIARY' });
 PostAuxiliary.do = function (args) {
-	console.log(args);
 	Utils.checkMembers(args, ['name', 'password', 'email']);
-	return RestService.postAuxiliary({ data: args });	
+	var params = {
+		token: Utils.encode('guest', 'guest'),
+		data: args
+	};
+	console.log(params);
+	return RestService.postAuxiliary(params);	
 }

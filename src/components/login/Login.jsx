@@ -20,8 +20,15 @@ class Login extends React.Component {
         this.state = {
             error: ''
         };
-        StoreRegistry.getStore('ERROR_STORE').register(this, this.onLogonError.bind(this));
 	}
+
+    componentDidMount() {
+        StoreRegistry.getStore('ERROR_STORE').register(this, this.onLogonError.bind(this));
+    }
+
+    componentWillUnmount() {
+        StoreRegistry.getStore('ERROR_STORE').unregister(this);   
+    }
 
     onLogonError() {
         let error = StoreRegistry.getStore('ERROR_STORE').getData('/logon/error');
