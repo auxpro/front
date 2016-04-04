@@ -3,14 +3,9 @@ import React from 'react';
 /*eslint-enable no-unused-vars */
 import ReactDOM from 'react-dom';
 
-import { Router, Route, hashHistory, DefaultRoute } from 'react-router'
+import { Router, Route, hashHistory } from 'react-router'
 
 import App from './components/app/App.jsx';
-import Land from './components/land/Land.jsx';
-import Login from './components/login/Login.jsx';
-import RegisterAux from './components/register/RegisterAux.jsx';
-import RegisterSad from './components/register/RegisterSad.jsx';
-import Home from './components/home/Home.jsx';
 
 import Bootstrap from './core/Bootstrap.js';
 

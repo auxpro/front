@@ -36,7 +36,7 @@ class Login extends React.Component {
     		user: this.refs.user.value, 
     		pass: this.refs.pass.value
     	};
-    	Dispatcher.issue("CHECK_CREDENTIALS", params);
+    	Dispatcher.issue("LOGON", params);
 	}
 
     render() { return (

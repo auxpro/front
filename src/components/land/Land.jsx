@@ -24,8 +24,8 @@ export default class Land extends React.Component {
         };
     };
 
-    handleCancel() {
-        this.currentAuthSetter('none').bind(this)();
+    handleCancel(event) {
+        this.currentAuthSetter('none').bind(this)(event);
     }
 
     guestLogin(event) {
@@ -34,7 +34,7 @@ export default class Land extends React.Component {
             user: 'guest', 
             pass: 'guest'
         };
-        Dispatcher.issue("CHECK_CREDENTIALS", params);
+        Dispatcher.issue('LOGON', params);
     }
 
     render() { 

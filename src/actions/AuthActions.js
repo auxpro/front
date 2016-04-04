@@ -12,8 +12,8 @@ import RestService from '../services/rest/RestService.js';
  * @param {string}   [args.user]
  * @param {string}   [args.pass]
  */
-var CheckCredentials = new ActionBase({	name: 'CHECK_CREDENTIALS' });
-CheckCredentials.do = function (args) {
+var Logon = new ActionBase({ name: 'LOGON' });
+Logon.do = function (args) {
 	Utils.checkMembers(args, ['user', 'pass']);
 	var token = Utils.encode(args.user, args.pass);
 	StoreRegistry.getStore('LOGIN_STORE').setToken(token);

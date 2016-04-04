@@ -17,6 +17,6 @@ ErrorStore.onCheckCredentialsError = function (args) {
 	ErrorStore.notify();
 };
 
-Dispatcher.register('CHECK_CREDENTIALS', ErrorStore.onCheckCredentialsSuccess, ErrorStore.onCheckCredentialsError);
+Dispatcher.register('LOGON', ErrorStore.onCheckCredentialsSuccess, ErrorStore.onCheckCredentialsError);
 
 export default ErrorStore;

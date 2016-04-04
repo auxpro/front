@@ -23,6 +23,6 @@ LoginStore.reset = function () {
 	LoginStore.notify();
 };
 
-Dispatcher.register('CHECK_CREDENTIALS', LoginStore.onLogon);
+Dispatcher.register('LOGON', LoginStore.onLogon);
 
 export default LoginStore;
