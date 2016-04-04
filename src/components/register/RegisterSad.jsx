@@ -41,6 +41,7 @@ export default class RegisterSad extends React.Component {
 				<input ref='city' placeholder='Ville'/>
 			</div>
 			<button onClick={this.register.bind(this)}>Créer Compte</button>
+			<button onClick={this.props.onCancel}>Annuler</button>
 		</div>
 	);}
 }

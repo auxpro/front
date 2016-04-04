@@ -7,15 +7,8 @@ import Login from '../login/Login.jsx';
 import RegisterAux from '../register/RegisterAux.jsx';
 import RegisterSad from '../register/RegisterSad.jsx';
 
-
-/**
- *
- */ 
 export default class Land extends React.Component {
 
-    /**
-     *
-     */
     constructor(props) {
         super(props);
         this.state = {
@@ -23,31 +16,29 @@ export default class Land extends React.Component {
         };
     }
 
-    /**
-     *
-     */
     currentAuthSetter(value) {
         return function () {
             this.setState({ currentAuth: value });
         };
     };
 
-    /**
-     *
-     */
+    handleCancel() {
+        this.currentAuthSetter('none').bind(this)();
+    }
+
     render() { 
         switch (this.state.currentAuth) {
         case 'login':
             return (
-            <Login/>
+            <Login onCancel={this.handleCancel.bind(this)}/>
             );
         case 'regAux':
             return (
-            <RegisterAux/>
+            <RegisterAux onCancel={this.handleCancel.bind(this)}/>
             );
         case 'regSad':
             return (
-            <RegisterSad/>
+            <RegisterSad onCancel={this.handleCancel.bind(this)}/>
             );
         default:
             return (

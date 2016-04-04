@@ -18,7 +18,7 @@ class AuxiliariesBox extends React.Component {
 	}
 
     componentDidMount () {
-        StoreRegistry.getStore('AUXILIARY_STORE').register(this, this.onAuxiliaryUpdate.bind(this));
+        StoreRegistry.register('AUXILIARY_STORE', this, this.onAuxiliaryUpdate.bind(this));
         var params = { token: StoreRegistry.getStore('LOGIN_STORE').getData('/token') }
         Dispatcher.issue('GET_AUXILIARIES', params);
     }

@@ -50,6 +50,7 @@ class Login extends React.Component {
                     {this.state.error}
                 </div>
     			<button type='submit' onClick={this.login.bind(this)}>Connexion</button>
+                <button onClick={this.props.onCancel}>Annuler</button>
     		</form>
     	</div>
     );}

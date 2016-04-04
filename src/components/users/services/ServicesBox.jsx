@@ -29,7 +29,6 @@ class ServicesBox extends React.Component {
     }
 
     componentWillUnmount () {
-        console.log('unmounting');
         StoreRegistry.unregister('SERVICE_STORE', this);
     }
 
