@@ -9,7 +9,7 @@ import ServicesBox from '../users/services/ServicesBox.jsx'
 
 export default class Home extends React.Component {
 
-	logout() {
+	logout(event) {
 		event.preventDefault();
     	Dispatcher.issue("LOGOUT", {});
 	}

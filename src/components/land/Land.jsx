@@ -53,8 +53,8 @@ export default class Land extends React.Component {
             );
         default:
             return (
-            <div>
-                <button onClick={this.currentAuthSetter('login').bind(this)}>Se Connecter</button>
+            <div className="container">
+                <button className="btn btn-lg btn-primary" onClick={this.currentAuthSetter('login').bind(this)}>Se Connecter</button>
                 <button onClick={this.currentAuthSetter('regAux').bind(this)}>Creer Compte Auxiliaire</button>
                 <button onClick={this.currentAuthSetter('regSad').bind(this)}>Creer Compte Societe</button>
                 <button onClick={this.guestLogin}>Acces Invite</button>
