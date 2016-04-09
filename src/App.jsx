@@ -17,10 +17,12 @@ ReactDOM.render((
 	<div>
 		<Header/>
 		<div className="container">
-	  		<h1>AUXPRO</h1>
-			<Router history={hashHistory}>
-				<Route path="/" component={Main}/>
-			</Router>
+			<div className="page-header">
+	  			<h1>AUXPRO</h1>
+	  		</div>
+				<Router history={hashHistory}>
+					<Route path="/" component={Main}/>
+				</Router>
 			<Footer/>
 		</div>
 	</div>
