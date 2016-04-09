@@ -4,7 +4,7 @@ import React from 'react';
 export default class Header extends React.Component {
 
 	render() { return (
-		<div>
+		<div className="footer">
 			<div>
 				<span>Mentions Légales   </span>
 				<span>Contact</span>
