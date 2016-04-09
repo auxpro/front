@@ -5,12 +5,19 @@ import ReactDOM from 'react-dom';
 
 import { Router, Route, hashHistory } from 'react-router'
 
-import App from './components/app/App.jsx';
+import Header from './components/app/Header.jsx';
+import Main from './components/app/Main.jsx';
+import Footer from './components/app/Footer.jsx';
 
 import Bootstrap from './core/Bootstrap.js';
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-  	<Route path="/" component={App}/>
-  </Router>
+	<div>
+		<Header/>
+	  	<h1>AUXPRO</h1>
+		<Router history={hashHistory}>
+			<Route path="/" component={Main}/>
+		</Router>
+		<Footer/>
+	</div>
 ), document.getElementById('app'))
