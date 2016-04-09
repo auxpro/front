@@ -23,7 +23,7 @@ ReactDOM.render((
 				<Router history={hashHistory}>
 					<Route path="/" component={Main}/>
 				</Router>
-			<Footer/>
 		</div>
+		<Footer/>
 	</div>
 ), document.getElementById('app'))

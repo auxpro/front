@@ -4,11 +4,10 @@ import React from 'react';
 export default class Header extends React.Component {
 
 	render() { return (
-		<div className="footer">
-			<div>
-				<span>Mentions Légales   </span>
-				<span>Contact</span>
+		<footer className="footer">
+			<div className="container">
+				<p className="text-muted">Mentions Légales</p>
 			</div>
-		</div>
+		</footer>
 	);}
 }

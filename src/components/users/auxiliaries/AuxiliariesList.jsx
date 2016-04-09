@@ -24,7 +24,7 @@ class AuxiliariesList extends React.Component {
             );
         });
         return (
-    	<table>    
+    	<table className="table-striped">    
             <thead>
                 <AuxiliaryItem name='Nom' key='header' email='Address électronique' firstName='Prénom' lastName='Nom' phone='Téléphone'/>
             </thead>
