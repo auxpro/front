@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
+
 /*eslint-disable no-unused-vars */
 import React from 'react';
 /*eslint-enable no-unused-vars */
@@ -14,10 +16,12 @@ import Bootstrap from './core/Bootstrap.js';
 ReactDOM.render((
 	<div>
 		<Header/>
-	  	<h1>AUXPRO</h1>
-		<Router history={hashHistory}>
-			<Route path="/" component={Main}/>
-		</Router>
-		<Footer/>
+		<div className="container">
+	  		<h1>AUXPRO</h1>
+			<Router history={hashHistory}>
+				<Route path="/" component={Main}/>
+			</Router>
+			<Footer/>
+		</div>
 	</div>
 ), document.getElementById('app'))
