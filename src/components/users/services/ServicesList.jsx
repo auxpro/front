@@ -16,14 +16,28 @@ class ServicesList extends React.Component {
                     key={user.name}
                     name={user.name} 
                     email={user.email}
+                    tuto={user.tutoSkipped}
+                    registration={user.registrationDate}
                     society={user.society}
+                    reason={user.socialReason}
+                    siret={user.siret}
                     phone={user.phone}/>
             );
         });
         return (
     	<table>    
             <thead>
-                <ServiceItem name='Nom' key='header' email='Address électronique' society='Société' lastName='Nom' phone='Téléphone'/>
+                <ServiceItem 
+                    key='header'
+                    name='Nom'
+                    email='Address électronique' 
+                    tuto='Tutoriaux faits ?'
+                    registration="Date d'inscription"
+                    society='Société' 
+                    lastName='Nom' 
+                    reason='Raison sociale' 
+                    siret='Numéro de SIRET' 
+                    phone='Téléphone'/>
             </thead>
             <tbody>
                 {nodes}

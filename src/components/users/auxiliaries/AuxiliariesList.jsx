@@ -18,15 +18,33 @@ class AuxiliariesList extends React.Component {
                     key={user.name}
                     name={user.name} 
                     email={user.email}
+                    active={user.active}
+                    tuto={user.tutoSkipped}
+                    registration={user.registrationDate}
+                    civility={user.civility}
                     firstName={user.firstName}
                     lastName={user.lastName}
+                    birthDate={user.birthDate}
+                    birthPlace={user.birthPlace}
                     phone={user.phone}/>
             );
         });
         return (
-    	<table className="table-striped">    
+    	<table className="table-striped">
             <thead>
-                <AuxiliaryItem name='Nom' key='header' email='Address électronique' firstName='Prénom' lastName='Nom' phone='Téléphone'/>
+                <AuxiliaryItem 
+                    key='header'
+                    name='Nom'
+                    email='Address électronique' 
+                    active='Compte Actif ?'
+                    tuto='Tutoriaux faits ?'
+                    registration="Date d'inscription"
+                    civility='Civilité'
+                    firstName='Prénom' 
+                    lastName='Nom' 
+                    birthDate='Date de naissance' 
+                    birthPlace='Lieu de naissance' 
+                    phone='Téléphone'/>
             </thead>
             <tbody>
                 {nodes}
