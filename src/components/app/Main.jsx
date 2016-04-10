@@ -2,7 +2,7 @@ import React from 'react';
 import Land from '../land/Land.jsx';
 import Home from '../home/Home.jsx';
 import StoreRegistry from '../../core/StoreRegistry';
-export default class App extends React.Component {
+export default class Main extends React.Component {
 
 	constructor(props) {
 		super(props);
