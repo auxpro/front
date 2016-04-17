@@ -1,7 +1,8 @@
 // Import React Core
 import React from 'react';
+import { Link } from 'react-router'
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 
 	render() { return (
 		<nav className="navbar navbar-inverse navbar-fixed-top">
@@ -17,16 +18,17 @@ export default class Header extends React.Component {
             			<span className="icon-bar"></span>
             			<span className="icon-bar"></span>
           			</button>
-          			<a className="navbar-brand" href="#">AUXPRO</a>
+          			<Link to="/" className="navbar-brand">AUXPRO</Link>
         		</div>
 				<div id="navbar" className="collapse navbar-collapse">
 					<ul className="nav navbar-nav">
-						<li><a href="#about">About</a></li>
-            			<li><a href="#contact">Contact</a></li>
-            			<li><a href="#contact">3rd</a></li>
+						<li><Link to="/about">About</Link></li>
+            			<li><Link to="/about">Contact</Link></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	);}
 }
+
+export default Header;

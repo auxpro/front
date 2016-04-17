@@ -1,5 +1,6 @@
 // Import React modules
 import React from 'react';
+import { Link } from 'react-router'
 // Import Core modules
 import Dispatcher from '../../core/Dispatcher';
 
@@ -14,6 +15,7 @@ export default class RegisterAux extends React.Component {
     		firstName: this.refs.firstName.value,
     		lastName: this.refs.lastName.value,
     		phone: this.refs.phone.value,
+			civility: "Mr",
     		address: {
     			address: this.refs.address.value,
     			postalCode: this.refs.postalCode.value,
@@ -43,7 +45,7 @@ export default class RegisterAux extends React.Component {
 				<input ref='city' placeholder='Ville'/>
 			</div>
 			<button onClick={this.register.bind(this)}>Créer Compte</button>
-			<button onClick={this.props.onCancel}>Annuler</button>
+			<Link to="/" className="btn btn-default" >Annuler</Link>
 		</div>
 	);}
 }

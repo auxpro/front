@@ -1,7 +1,7 @@
 // Import React Core
 import React from 'react';
 
-export default class Header extends React.Component {
+class Footer extends React.Component {
 
 	render() { return (
 		<footer className="footer">
@@ -11,3 +11,5 @@ export default class Header extends React.Component {
 		</footer>
 	);}
 }
+
+export default Footer;

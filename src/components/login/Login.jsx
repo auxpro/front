@@ -1,5 +1,6 @@
 // Import React core
 import React from 'react';
+import { IndexLink, Link } from 'react-router'
 // Import utilities
 import Utils from '../../utils/Utils';
 // Import core modules
@@ -41,7 +42,7 @@ class Login extends React.Component {
 
     render() { return (
     	<div>
-    		<form role='form'>
+    		<form role='form' onSubmit={this.login.bind(this)}>
     			<div className='form-group'>
     				<input type='text' ref='user' placeholder="Nom d'utilisateur ou addresse électronique" />
     				<input type='password' ref='pass' placeholder='Mot de passe' />
@@ -49,8 +50,8 @@ class Login extends React.Component {
                 <div>
                     {this.state.error}
                 </div>
-    			<button type='submit' onClick={this.login.bind(this)}>Connexion</button>
-                <button onClick={this.props.onCancel}>Annuler</button>
+    			<button type='submit' className="btn btn-success">Connexion</button>
+                <Link to="/" className="btn btn-default" >Annuler</Link>
     		</form>
     	</div>
     );}

@@ -6,7 +6,7 @@ var webpack = require('webpack');
  
 module.exports = {
 
-  entry: path.resolve(__dirname, 'src/App.jsx'),
+  entry: path.resolve(__dirname, './index.jsx'),
 
   output: { 
     path: path.resolve(__dirname, 'build'), 

@@ -1,33 +1,23 @@
 // React Modules
 import React from 'react';
-// Core Modules
+import { IndexLink, Link } from 'react-router'
+
 import Dispatcher from '../../core/Dispatcher';
 import StoreRegistry from '../../core/StoreRegistry';
-// Components
-import Login from '../login/Login.jsx';
-import RegisterAux from '../register/RegisterAux.jsx';
-import RegisterSad from '../register/RegisterSad.jsx';
 
-export default class Land extends React.Component {
+class Land extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            currentAuth: 'none'
-        };
     }
-
-    currentAuthSetter(value) {
-        return function (event) {
-            event.preventDefault();
-            this.setState({ currentAuth: value });
-        };
-    };
-
-    handleCancel(event) {
-        this.currentAuthSetter('none').bind(this)(event);
+	
+	componentDidMount() {
+        let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
+		if (logged) {
+			this.context.router.push("/home");
+		}
     }
-
+	
     guestLogin(event) {
         event.preventDefault();
         let params = {
@@ -38,28 +28,20 @@ export default class Land extends React.Component {
     }
 
     render() { 
-        switch (this.state.currentAuth) {
-        case 'login':
-            return (
-            <Login onCancel={this.handleCancel.bind(this)}/>
-            );
-        case 'regAux':
-            return (
-            <RegisterAux onCancel={this.handleCancel.bind(this)}/>
-            );
-        case 'regSad':
-            return (
-            <RegisterSad onCancel={this.handleCancel.bind(this)}/>
-            );
-        default:
             return (
             <div className="container">
-                <button className="btn btn-success" onClick={this.currentAuthSetter('login').bind(this)}>Se Connecter</button>
-                <button className="btn btn-info" onClick={this.currentAuthSetter('regAux').bind(this)}>Creer Compte Auxiliaire</button>
-                <button className="btn btn-primary" onClick={this.currentAuthSetter('regSad').bind(this)}>Creer Compte Societe</button>
+                <Link to="/login" className="btn btn-success">Se Connecter</Link>
+                <Link to="/registerAux" className="btn btn-info">Creer Compte Auxiliaire</Link>
+                <Link to="/registerSad" className="btn btn-primary">Creer Compte Societe</Link>
                 <button className="btn btn-default" onClick={this.guestLogin}>Acces Invite</button>
             </div>
             );
-        }
     };
 }
+
+Land.contextTypes = {
+		router: React.PropTypes.object
+		}
+
+
+export default Land;

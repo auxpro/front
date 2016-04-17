@@ -1,13 +1,21 @@
 // Import React Core
 import React from 'react';
-// Import core modules
-import Dispatcher from '../../core/Dispatcher';
 // Import Components
 import AuxiliariesBox from '../users/auxiliaries/AuxiliariesBox.jsx'
 import ServicesBox from '../users/services/ServicesBox.jsx'
 
+import Dispatcher from '../../core/Dispatcher';
+import StoreRegistry from '../../core/StoreRegistry';
 
-export default class Home extends React.Component {
+class Home extends React.Component {
+
+	componentWillMount() {
+		console.log("home mount");
+        let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
+		if (!logged) {
+			this.context.router.push("/login");
+		}
+    }
 
 	logout(event) {
 		event.preventDefault();
@@ -23,3 +31,10 @@ export default class Home extends React.Component {
 		</div>
 	);}
 }
+
+Home.contextTypes = {
+		router: React.PropTypes.object
+		}
+
+
+export default Home;

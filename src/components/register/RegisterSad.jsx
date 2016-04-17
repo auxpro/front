@@ -1,5 +1,6 @@
 // Import React modules
 import React from 'react';
+import { Link } from 'react-router'
 // Import Core modules
 import Dispatcher from '../../core/Dispatcher';
 
@@ -25,7 +26,7 @@ export default class RegisterSad extends React.Component {
 
 	render() { return (
 		<div>
-			<h2>Créer un compte Auxiliaire</h2>
+			<h2>Créer un compte Societe</h2>
 		  	<div>
 		  		<input ref='name' placeholder="Nom d'utilisateur"/>
 		  	  	<input ref='email' placeholder='Addresse électronique'/>
@@ -41,7 +42,7 @@ export default class RegisterSad extends React.Component {
 				<input ref='city' placeholder='Ville'/>
 			</div>
 			<button onClick={this.register.bind(this)}>Créer Compte</button>
-			<button onClick={this.props.onCancel}>Annuler</button>
+			 <Link to="/" className="btn btn-default" >Annuler</Link>
 		</div>
 	);}
 }
