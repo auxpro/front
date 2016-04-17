@@ -31,12 +31,12 @@ class Login extends React.Component {
     }
 
 	login(event) {
-		event.preventDefault();
-    	let params = {
-    		user: this.refs.user.value, 
-    		pass: this.refs.pass.value
-    	};
-    	Dispatcher.issue("LOGON", params);
+        event.preventDefault();
+        let params = {
+            user: this.refs.user.value, 
+            pass: this.refs.pass.value
+        };
+        Dispatcher.issue("LOGON", params);
 	}
 
     render() { return (

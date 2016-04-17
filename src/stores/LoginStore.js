@@ -11,11 +11,11 @@ var LoginStore = new StoreBase ({
 });
 
 LoginStore.setToken = function (token) {
-	LoginStore._content = Utils.merge(LoginStore._content, { token: token });
+	LoginStore._content = Utils.merge(LoginStore._content, { token: token }, true);
 }
 LoginStore.onLogon = function (args) {
 	args.logged = true;
-	LoginStore._content = Utils.merge(LoginStore._content, args);
+	LoginStore._content = Utils.merge(LoginStore._content, args, true);
 	LoginStore.notify();
 };
 LoginStore.reset = function () {
