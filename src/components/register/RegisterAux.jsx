@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 // Import Core modules
 import Dispatcher from '../../core/Dispatcher';
 
-export default class RegisterAux extends React.Component {
+class RegisterAux extends React.Component {
 
 	register() {
 		event.preventDefault();
@@ -24,6 +24,7 @@ export default class RegisterAux extends React.Component {
 
     	};
     	Dispatcher.issue("POST_AUXILIARY", params);
+		this.context.router.push("/");
 	}
 
 	render() { return (
@@ -49,3 +50,9 @@ export default class RegisterAux extends React.Component {
 		</div>
 	);}
 }
+
+RegisterAux.contextTypes = {
+		router: React.PropTypes.object
+		}
+
+export default RegisterAux;

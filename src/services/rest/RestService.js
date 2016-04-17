@@ -7,7 +7,7 @@ export default class RestService {
 				HEADER_TOKEN : "Authorization"
 			};
 			reqParam.url = _CONFIG.BASE_URL + reqParam.url;
-			reqParam.data = reqParam.data | {}; 
+			reqParam.data = reqParam.data  || {}; 
 			return new Promise(function (resolve, reject) {
 				var xhr = new XMLHttpRequest();
 				xhr.open(reqParam.method, reqParam.url, true);

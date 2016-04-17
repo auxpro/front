@@ -4,8 +4,8 @@ import { Link } from 'react-router'
 // Import Core modules
 import Dispatcher from '../../core/Dispatcher';
 
-export default class RegisterSad extends React.Component {
-	
+class RegisterSad extends React.Component {
+
 	register() {
 		event.preventDefault();
     	let params = {
@@ -22,6 +22,7 @@ export default class RegisterSad extends React.Component {
 
     	};
     	Dispatcher.issue("POST_SERVICE", params);
+		this.context.router.push("/");
 	}	
 
 	render() { return (
@@ -46,3 +47,9 @@ export default class RegisterSad extends React.Component {
 		</div>
 	);}
 }
+
+RegisterSad.contextTypes = {
+		router: React.PropTypes.object
+		}
+
+export default RegisterSad;
