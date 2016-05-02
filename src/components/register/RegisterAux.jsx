@@ -28,7 +28,7 @@ class RegisterAux extends React.Component {
 	}
 
 	render() { return (
-		<div>
+		<div className="container">
 			<h2>Créer un compte Auxiliaire</h2>
 		  	<div>
 		  		<input ref='name' placeholder="Nom d'utilisateur"/>

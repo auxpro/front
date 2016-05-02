@@ -23,7 +23,7 @@ class Home extends React.Component {
 	}
 
 	render() { return (
-		<div>
+		<div className="container">
 			<button onClick={this.logout.bind(this)}>Déconnexion</button>
 			<h1>Home</h1>
 			<AuxiliariesBox/>

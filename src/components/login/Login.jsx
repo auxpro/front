@@ -41,7 +41,7 @@ class Login extends React.Component {
 	}
 
     render() { return (
-    	<div>
+    	<div className="container">
     		<form role='form' onSubmit={this.login.bind(this)}>
     			<div className='form-group'>
     				<input type='text' ref='user' placeholder="Nom d'utilisateur ou addresse électronique" />
