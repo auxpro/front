@@ -74,6 +74,20 @@ export default class RestService {
 		reqParam.token = args.token;
 		return RestService._request(reqParam);
 	};
+	
+		/**
+	 *
+	 * @param {object} [args]
+	 * @param {string} [args.token] valid session token to be passed as header
+	 * @returns a Promise object 
+	 */
+	static getAuxiliary (args) {
+		var reqParam = {};
+		reqParam.url = '/auxiliary/' + args.name;
+		reqParam.method = 'GET';
+		reqParam.token = args.token;
+		return RestService._request(reqParam);
+	};
 
 	/**
      *

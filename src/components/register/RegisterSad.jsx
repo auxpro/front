@@ -32,7 +32,7 @@ class RegisterSad extends React.Component {
 		  	  	<input ref='email' placeholder='Addresse électronique'/>
 		  		<input ref='password' placeholder='Mot de passe'/>
 	  		</div>
-			<button onClick={this.register.bind(this)}>Créer Compte</button>
+			<button className="btn btn-success" onClick={this.register.bind(this)}>Créer Compte</button>
 			 <Link to="/" className="btn btn-default" >Annuler</Link>
 		</div>
 	);}
