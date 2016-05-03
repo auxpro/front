@@ -19,6 +19,7 @@ import RegisterSad from './src/components/register/RegisterSad.jsx'
 import AuxiliaryTuto from './src/components/users/auxiliaries/AuxiliaryTuto.jsx'
 import ServicesTuto from './src/components/users/services/ServicesTuto.jsx'
 import ProfilPrompt from './src/components/home/ProfilPrompt.jsx'
+import ProfilEdit from './src/components/home/ProfilEdit.jsx'
 
 render((
   <Router history={browserHistory}>
@@ -32,6 +33,7 @@ render((
 		<Route path="/auxiliaryTuto" component={AuxiliaryTuto}/>
 		<Route path="/servicesTuto" component={ServicesTuto}/>
 		<Route path="/profilprompt" component={ProfilPrompt}/>
+		<Route path="/profiledit" component={ProfilEdit}/>
 	</Route>
   </Router>
 ), document.getElementById('app'))

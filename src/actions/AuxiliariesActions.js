@@ -32,3 +32,9 @@ PostAuxiliary.do = function (args) {
 	};
 	return RestService.postAuxiliary(params);	
 }
+
+let PutAuxiliary = new ActionBase({ name: 'PUT_AUXILIARY' });
+PutAuxiliary.do = function (args) {
+	Utils.checkMembers(args, ['data', 'token']);
+	return RestService.putAuxiliary(args);	
+}

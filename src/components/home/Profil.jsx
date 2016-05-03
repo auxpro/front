@@ -6,6 +6,14 @@ import StoreRegistry from '../../core/StoreRegistry';
 
 class Profil extends React.Component {
 
+		constructor(props) {
+			super(props);
+			this.state = {
+				data: StoreRegistry.getStore('AUXILIARY_STORE').getData('/auxiliary/' + StoreRegistry.getStore('LOGIN_STORE').getData('/name'))
+			};
+		}
+
+
 	componentWillMount() {
         let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
 		if (!logged) {
@@ -14,18 +22,20 @@ class Profil extends React.Component {
     }
 
 	render() { 
+	console.log(this.state);
 	let user = StoreRegistry.getStore('LOGIN_STORE').getData('/');
 		return(
 		<div className="container">
 			<div className="row">
-					<div className="col-sm-3">
+					<div className="col-sm-4">
 						 <img src="./../../../assets/img/profil.jpeg"/>
 					</div>
-					<div className="col-sm-3"></div>
-					<div className="col-sm-3"></div>
-					<div className="col-sm-3">
-						Nom: {user.name}
-						Adresse electronique: {user.email}
+					<div className="col-sm-4"></div>
+					<div className="col-sm-4">
+						<div>Nom: {this.state.data.firstName} {this.state.data.lastName}</div>
+						<div>Adresse electronique: {this.state.data.email}</div>
+						<div>Telephone: {this.state.data.phone}</div>
+						<div>Diplome: {this.state.data.diploma}</div>
 					</div>
 				</div>
 		</div>
