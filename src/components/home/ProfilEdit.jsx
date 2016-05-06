@@ -8,7 +8,6 @@ import { ControlLabel, Button, FormControl, FormGroup, Form, Col } from 'react-b
 
 class ProfilEdit extends React.Component {
 
-	
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,13 +22,13 @@ class ProfilEdit extends React.Component {
 		}
     }
 	
-	handleChangePassword(e) {
-		this.state.data.password =  e.target.value;
-	}
-	
-		handleChangeName(e) {
-		this.state.data.lastName =  e.target.value;
-	}
+	handleChangePassword(e) { this.state.data.password = e.target.value; }
+	handleChangeLastName(e) { this.state.data.lastName =  e.target.value; }
+	handleChangeFirstName(e) { this.state.data.firstName =  e.target.value; }
+	handleChangePhone(e) { this.state.data.phone =  e.target.value; }
+	handleChangeBirthDate(e) { this.state.data.birthDate =  e.target.value; }
+	handleChangeCivility(e) { this.state.data.civility =  e.target.value; }
+	handleChangeDiploma(e) { this.state.data.diploma =  e.target.value; }
 	
 	update(event) {
 		console.log(this.state.data);
@@ -56,7 +55,7 @@ class ProfilEdit extends React.Component {
 				Nom
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.lastName} onChange={this.handleChangeName.bind(this)}/>
+				<FormControl type="text" defaultValue={this.state.data.lastName} onChange={this.handleChangeLastName.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
@@ -65,7 +64,7 @@ class ProfilEdit extends React.Component {
 				Prenom
 			  </Col>
 			  <Col sm={10}>
-				<FormControl value={this.state.data.firstName} />
+				<FormControl defaultValue={this.state.data.firstName} onChange={this.handleChangeFirstName.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
@@ -74,7 +73,7 @@ class ProfilEdit extends React.Component {
 				Telephone
 			  </Col>
 			  <Col sm={10}>
-				<FormControl value={this.state.data.phone} />
+				<FormControl type="text" defaultValue={this.state.data.phone} onChange={this.handleChangePhone.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
@@ -83,7 +82,7 @@ class ProfilEdit extends React.Component {
 				Date de Naissance
 			  </Col>
 			  <Col sm={10}>
-				<FormControl value={this.state.data.birthDate} />
+				<FormControl type="text" defaultValue={this.state.data.birthDate} onChange={this.handleChangeBirthDate.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
@@ -92,7 +91,7 @@ class ProfilEdit extends React.Component {
 				Civilite
 			  </Col>
 			  <Col sm={10}>
-				<FormControl value={this.state.data.civility} />
+				<FormControl type="text" defaultValue={this.state.data.civility} onChange={this.handleChangeCivility.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
@@ -101,7 +100,7 @@ class ProfilEdit extends React.Component {
 				Diplome
 			  </Col>
 			  <Col sm={10}>
-				<FormControl value={this.state.data.diploma} />
+				<FormControl type="text" defaultValue={this.state.data.diploma} onChange={this.handleChangeDiploma.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
