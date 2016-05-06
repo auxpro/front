@@ -1,11 +1,9 @@
-// Import React Core
+// react modules
 import React from 'react';
-
-import { Nav, Navbar, NavItem } from 'react-bootstrap'
+// react-bootstrap modules
+import { Nav, Navbar } from 'react-bootstrap'
 import { Grid, Row, Col } from 'react-bootstrap'
-import { Table } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-
+// custom modules
 import FooterTable from './FooterTable.jsx'
 
 class Footer extends React.Component {
