@@ -1,9 +1,15 @@
-// Import React core
+// react modules
 import React from 'react';
-import { IndexLink, Link } from 'react-router'
-// Import utilities
+// react-bootstrap modules
+import { Button, Panel, Nav, Navbar } from 'react-bootstrap'
+import { Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
+// react-router-bootstrap modules
+import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap'
+
+// utility modules
 import Utils from '../../utils/Utils';
-// Import core modules
+// core modules
 import Dispatcher from '../../core/Dispatcher';
 import StoreRegistry from '../../core/StoreRegistry';
 
@@ -33,30 +39,52 @@ class Login extends React.Component {
 
 	login(event) {
         event.preventDefault();
+        console.log('here');
+        console.log(this.state);
         let params = {
-            user: this.refs.user.value, 
-            pass: this.refs.pass.value
+            user: this.state.user, 
+            pass: this.state.pass
         };
-        Dispatcher.issue("LOGON", params);
+        Dispatcher.issue('LOGON', params);
 	}
 
-    render() { return (
-    	<div className="container">
-    		<form role='form' onSubmit={this.login.bind(this)}>
-    			<div className='form-group'>
-    				<input type='text' ref='user' placeholder="Nom d'utilisateur ou addresse électronique" />
-    				<input type='password' ref='pass' placeholder='Mot de passe' />
-    			</div>
-                <div>
-                    {this.state.error}
-                </div>
-    			<button type='submit' className="btn btn-success">Connexion</button>
-                <Link to="/" className="btn btn-default" >Annuler</Link>
-    		</form>
-    	</div>
-    );}
+    handleEmailChanged(e) {  this.state.user = e.target.value; }
+    handlePasswordChanged(e) { this.state.pass = e.target.value; }
 
-    
+    render() { return (
+    	<div className='container'>
+            <br/>
+            <Col smOffset={1} sm={10} mdOffset={2} md={8}>
+            <Panel 
+                header={this.state.error?this.state.error:'Saisir les informations utilisateur'} 
+                bsStyle={this.state.error?'danger':'default'}>
+            <Form onSubmit={this.login.bind(this)}>
+                <FormGroup controlId='user'>
+                    <ControlLabel>Adresse électronique</ControlLabel>
+                    <FormControl typeDISABLED='email' onChange={this.handleEmailChanged.bind(this)} placeholder='Adresse électronique'/>
+                </FormGroup>
+                <FormGroup controlId='pass'>
+                    <ControlLabel>Mot de passe</ControlLabel>
+                    <FormControl type='password' onChange={this.handlePasswordChanged.bind(this)}  placeholder='Mot de passe'/>
+                </FormGroup>
+                <br/>
+                <Row>
+                <Col sm={6} md={5} mdOffset={1} lg={4} lgOffset={2}>
+                    <Button type='submit' bsStyle='success' bsSize='large' block>Connexion</Button>
+                </Col>
+                <br className="visible-xs-block"/>
+                <Col sm={6} md={5} lg={4}>
+                    <LinkContainer to='/'>
+                        <Button bsStyle='default' bsSize='large' block>Annuler</Button>
+                    </LinkContainer>
+                </Col>                
+                </Row>
+            </Form>
+            </Panel>
+            </Col>
+            <br/>
+    	</div>
+    );}   
 }
 
 export default Login;

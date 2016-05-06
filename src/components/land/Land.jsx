@@ -1,4 +1,4 @@
-// react Modules
+// react modules
 import React from 'react';
 // react-bootstrap modules
 import { Button, Panel } from 'react-bootstrap'
@@ -6,8 +6,6 @@ import { Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap'
 import { Grid, Row, Col } from 'react-bootstrap'
 // react-router-bootstrap modules
 import { LinkContainer, IndexLinkContainer } from 'react-router-bootstrap'
-
-import { IndexLink, Link } from 'react-router'
 // custom modules
 import Dispatcher from '../../core/Dispatcher';
 import StoreRegistry from '../../core/StoreRegistry';
@@ -59,23 +57,23 @@ class Land extends React.Component {
     							</Form>
     						</Panel>
             				<Row>
-            					<Col smOffset={1} sm={5} mdOffset={2} md={4}>
+            					<Col sm={6} mdOffset={1} md={5}>
             						<LinkContainer to='/registerAux'>
-                        				<Button bsStyle="info" block>Créer Compte<br/>Auxiliaire</Button>
+                        				<Button bsStyle="info" bsSize='large' block>Créer Compte<br/>Auxiliaire</Button>
                     				</LinkContainer>
                     			</Col>
                     			<br className="visible-xs-block"/>
-                    			<Col sm={5} md={4}>
+                    			<Col sm={6} md={5}>
                     				<LinkContainer to='/registerSad'>
-	                        			<Button bsStyle="primary" block>Créer Compte<br/>Société</Button>
+	                        			<Button bsStyle="primary" bsSize='large' block>Créer Compte<br/>Société</Button>
     	                			</LinkContainer>
     	                		</Col>
     	                	</Row>
     	                	<br/>
     	                	<Row>
-    	                		<Col smOffset={4} sm={4}>
+    	                		<Col smOffset={3} sm={6}>
     	                			<LinkContainer to='/login'>
-                        				<Button bsStyle="success" block>Connexion</Button>
+                        				<Button bsStyle="success" bsSize='large' block>Connexion</Button>
                     				</LinkContainer>
                     			</Col>
                     		</Row>
