@@ -1,32 +1,40 @@
 // Import React Core
 import React from 'react';
 
+import { Nav, Navbar, NavItem } from 'react-bootstrap'
+import { Grid, Row, Col } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+
+import FooterTable from './FooterTable.jsx'
+
 class Footer extends React.Component {
 
-	render() { return (
-		<footer className="footer" >
-			<div className="container">
-				<div className="row">
-					<div className="col-sm-4">
-					<div>A Propos D'AUXPRO</div>
-					<div>Qui somme nous ?</div>
-					<div>Nos Services</div>
-					</div>
-					<div className="col-sm-4">
-					<div>Informations Legales</div>
-					<div>CGU</div>
-					<div>CGV</div>
-					<div>Confidentialité</div>
-					</div>
-					<div className="col-sm-4">
-					<div>Questions</div>
-					<div>FAQ</div>
-					<div>Aide</div>
-					<div>Nous Contacter</div>
-					</div>
-				</div>
-			</div>
-		</footer>
+	constructor(props) {
+		super(props);  
+	}
+ 
+	render() { 
+		var items1 = [
+			{ url: '', name: 'Qui sommes-nous ?'},
+			{ url: '', name: 'Nos services'}
+		];
+		var items2 = [
+			{ url: '', name: 'CGU'},
+			{ url: '', name: 'CGV'},
+			{ url: '', name: 'Confidentialité'}
+		];
+		var items3 = [
+			{ url: '', name: 'FAQ'},
+			{ url: '', name: 'Aide'},
+			{ url: '', name: 'Nous contacter'}
+		];
+		return (
+		<footer className="footer"><Navbar><Grid><Row>
+			<FooterTable title="AuxPro" items={items1}/>
+			<FooterTable title="Informations Légales" items={items2}/>
+			<FooterTable title="Questions" items={items3}/>
+		</Row></Grid></Navbar></footer>
 	);}
 }
 
