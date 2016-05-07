@@ -19,23 +19,34 @@ class RegisterSad extends React.Component {
         };
 	}
 
-	register() {
+	register(event) {
 		event.preventDefault();
-    	let params = {
-    		name: this.state.user, 
-    		email: this.state.user, 
-    		password: this.state.pass
-    	};
-    	Dispatcher.issue("POST_SERVICE", params);
-		this.context.router.push("/");
+        let params = {
+            name: this.state.user, 
+            email: this.state.user, 
+            password: this.state.pass
+        };
+        Dispatcher.issue('POST_SERVICE', params).
+        then(function () {
+            console.log('service créé');
+            let params = {
+                user: this.state.user, 
+                pass: this.state.pass
+            };
+            Dispatcher.issue('LOGON', params);
+        }.bind(this)).
+        catch(function (error) {
+            console.log(error);
+            this.setState({ error: 'Erreur lors de la création d\'un service'});
+        }.bind(this));
 	}	
 
 	handleEmailChanged(e) {  this.state.user = e.target.value; }
     handlePasswordChanged(e) { this.state.pass = e.target.value; }
 
 	render() { return (
-		<div className="container">
-			<br/>
+        <div className="container">
+            <br/>
             <Col smOffset={1} sm={10} mdOffset={2} md={8}>
             <Panel 
                 header={this.state.error?this.state.error:'Création compte Société'} 
@@ -65,12 +76,12 @@ class RegisterSad extends React.Component {
             </Panel>
             </Col>
             <br/>
-		</div>
-	);}
+        </div>
+    );}
 }
 
 RegisterSad.contextTypes = {
-		router: React.PropTypes.object
-		}
+	router: React.PropTypes.object
+}
 
 export default RegisterSad;

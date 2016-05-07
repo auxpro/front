@@ -48,7 +48,7 @@ class Login extends React.Component {
         Dispatcher.issue('LOGON', params);
 	}
 
-    handleEmailChanged(e) {  this.state.user = e.target.value; }
+    handleEmailChanged(e) { this.state.user = e.target.value; }
     handlePasswordChanged(e) { this.state.pass = e.target.value; }
 
     render() { return (

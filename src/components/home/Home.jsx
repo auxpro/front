@@ -1,26 +1,22 @@
-// Import React Core
+// react modules
 import React from 'react';
-// Import Components
+
+// core modules
+import Dispatcher from '../../core/Dispatcher';
+import StoreRegistry from '../../core/StoreRegistry';
+// custom modules
 import AuxiliariesBox from '../users/auxiliaries/AuxiliariesBox.jsx'
 import ServicesBox from '../users/services/ServicesBox.jsx'
 import Profil from './Profil.jsx'
-
-import Dispatcher from '../../core/Dispatcher';
-import StoreRegistry from '../../core/StoreRegistry';
 
 class Home extends React.Component {
 
 	componentWillMount() {
         let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
 		if (!logged) {
-			this.context.router.push("/login");
+			this.context.router.push('/login');
 		}
     }
-
-	logout(event) {
-		event.preventDefault();
-    	Dispatcher.issue("LOGOUT", {});
-	}
 
 	render() { 
 		let type = StoreRegistry.getStore('LOGIN_STORE').getData('/type');
@@ -28,16 +24,14 @@ class Home extends React.Component {
 			case 'services' :
 			case 'auxiliary' : 
 				return (
-					<div className="container">
+					<div className='container'>
 						<Profil/>
 					</div>
 				);
-					
 			 case 'admin' :
-			 case 'guest' : 	
+			 case 'guest' :
 				return (
-					<div className="container">
-						<button onClick={this.logout.bind(this)}>Déconnexion</button>
+					<div className='container'>
 						<h1>Home</h1>
 						<AuxiliariesBox/>
 						<ServicesBox/>
@@ -45,7 +39,7 @@ class Home extends React.Component {
 				);
 			default: 
 				return (
-					<div className="container">
+					<div className='container'>
 						Utilisateur Non Typé
 					</div>
 				);
@@ -54,8 +48,7 @@ class Home extends React.Component {
 }
 
 Home.contextTypes = {
-		router: React.PropTypes.object
-		}
-
+	router: React.PropTypes.object
+}
 
 export default Home;

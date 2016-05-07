@@ -1,16 +1,46 @@
-// Import React Core
+// react modules
 import React from 'react'
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button } from 'react-bootstrap'
+// react-bootstrap moduls
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Button, Glyphicon } from 'react-bootstrap'
+// react-router-bootstrap moduls
 import { LinkContainer } from 'react-router-bootstrap'
 
+// core modules
+import Dispatcher from '../../core/Dispatcher';
+import StoreRegistry from '../../core/StoreRegistry';
+
 class Header extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			logged: StoreRegistry.getStore('LOGIN_STORE').getData('/logged')
+		};
+	}
+
+	componentDidMount() {
+        StoreRegistry.register('LOGIN_STORE', this, this.onLogon.bind(this));
+    }
+
+    componentWillUnmount() {
+        StoreRegistry.unregister('LOGIN_STORE', this);   
+    }
+	
+	onLogon() {
+		this.setState({ logged: StoreRegistry.getStore('LOGIN_STORE').getData('/logged') });
+	}
+
+	logout(event) {
+		event.preventDefault();
+    	Dispatcher.issue('LOGOUT', {});
+	}
 
 	render() { return (
 		<header>
 		<Navbar inverse fixedTop>
 			<Navbar.Header>
 				<Navbar.Brand>
-					<LinkContainer to="/">
+					<LinkContainer to='/'>
 						<a>AuxPro</a>
 					</LinkContainer>
 				</Navbar.Brand>
@@ -18,23 +48,21 @@ class Header extends React.Component {
 			</Navbar.Header>
 			<Navbar.Collapse>
 				<Nav>
-					<LinkContainer to="/about">
+					<LinkContainer to='/about'>
 						<NavItem eventKey={1}>About</NavItem>
 					</LinkContainer>
-					<LinkContainer to="/contact">
+					<LinkContainer to='/contact'>
 						<NavItem eventKey={2}>Contact</NavItem>
 					</LinkContainer>
-					<NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-						<MenuItem eventKey={3.1}>Action</MenuItem>
-						<MenuItem eventKey={3.2}>Another action</MenuItem>
-						<MenuItem eventKey={3.3}>Something else here</MenuItem>
-						<MenuItem divider />
-						<MenuItem eventKey={3.3}>Separated link</MenuItem>
-					</NavDropdown>
 				</Nav>
 				<Nav pullRight>
-					<NavItem eventKey={4} href="#">Link Right</NavItem>
-        			<NavItem eventKey={5} href="#">Link Right</NavItem>
+				{this.state.logged?
+					<NavItem onClick={this.logout}>Déconnexion</NavItem>
+				:
+					<LinkContainer to='/login'>
+						<NavItem eventKey={1}>Connexion</NavItem>
+					</LinkContainer>
+				}
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>

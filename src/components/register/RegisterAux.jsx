@@ -19,15 +19,26 @@ class RegisterAux extends React.Component {
         };
 	}
 
-	register() {
+	register(event) {
 		event.preventDefault();
     	let params = {
     		name: this.state.user, 
     		email: this.state.user, 
     		password: this.state.pass
     	};
-    	Dispatcher.issue("POST_AUXILIARY", params);
-		this.context.router.push("/");
+    	Dispatcher.issue('POST_AUXILIARY', params).
+        then(function () {
+            console.log('utilisateur créé');
+            let params = {
+                user: this.state.user, 
+                pass: this.state.pass
+            };
+            Dispatcher.issue('LOGON', params);
+        }.bind(this)).
+        catch(function (error) {
+            console.log(error);
+            this.setState({ error: 'Erreur lors de la création d\'un utilisateur'});
+        }.bind(this));
 	}
 
 	handleEmailChanged(e) {  this.state.user = e.target.value; }
@@ -70,7 +81,7 @@ class RegisterAux extends React.Component {
 }
 
 RegisterAux.contextTypes = {
-		router: React.PropTypes.object
-		}
+	router: React.PropTypes.object
+}
 
 export default RegisterAux;

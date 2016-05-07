@@ -4,7 +4,7 @@ import React from 'react';
 import Dispatcher from '../../core/Dispatcher';
 import StoreRegistry from '../../core/StoreRegistry';
 
-import { ControlLabel, Button, FormControl, FormGroup, Form, Col } from 'react-bootstrap'
+import { ControlLabel, Button, FormControl, FormGroup, Form, Col, Panel, PageHeader } from 'react-bootstrap'
 
 class ProfilEdit extends React.Component {
 
@@ -18,7 +18,7 @@ class ProfilEdit extends React.Component {
 	componentWillMount() {
         let logged = StoreRegistry.getStore('LOGIN_STORE').getData('/logged');
 		if (!logged) {
-			this.context.router.push("/login");
+			this.context.router.push('/login');
 		}
     }
 	
@@ -34,32 +34,34 @@ class ProfilEdit extends React.Component {
 		console.log(this.state.data);
 		 this.state.token = StoreRegistry.getStore('LOGIN_STORE').getData('/token');
         event.preventDefault();
-        Dispatcher.issue("PUT_AUXILIARY", this.state);
-		this.context.router.push("/home");
+        Dispatcher.issue('PUT_AUXILIARY', this.state);
+		this.context.router.push('/home');
 	}
 
 	render() { 
 		return(
+			<div className='container'>
+			<PageHeader>Mon Profil <small>Edition</small></PageHeader>
 		<Form horizontal onSubmit={this.update.bind(this)}>
-			<FormGroup controlId="formHorizontalPassword">
+			<FormGroup controlId='formHorizontalPassword'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Mot de passe
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="password" onChange={this.handleChangePassword.bind(this)}/>
+				<FormControl type='password' onChange={this.handleChangePassword.bind(this)}/>
 			  </Col>
 			</FormGroup>
 
-			<FormGroup controlId="formHorizontalName">
+			<FormGroup controlId='formHorizontalName'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Nom
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.lastName} onChange={this.handleChangeLastName.bind(this)}/>
+				<FormControl type='text' defaultValue={this.state.data.lastName} onChange={this.handleChangeLastName.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
-			<FormGroup controlId="formHorizontalFirstName">
+			<FormGroup controlId='formHorizontalFirstName'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Prenom
 			  </Col>
@@ -68,56 +70,57 @@ class ProfilEdit extends React.Component {
 			  </Col>
 			</FormGroup>
 			
-			<FormGroup controlId="formHorizontalPhone">
+			<FormGroup controlId='formHorizontalPhone'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Telephone
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.phone} onChange={this.handleChangePhone.bind(this)}/>
+				<FormControl type='text' defaultValue={this.state.data.phone} onChange={this.handleChangePhone.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
-			<FormGroup controlId="formHorizontalBirthDate">
+			<FormGroup controlId='formHorizontalBirthDate'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Date de Naissance
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.birthDate} onChange={this.handleChangeBirthDate.bind(this)}/>
+				<FormControl type='text' defaultValue={this.state.data.birthDate} onChange={this.handleChangeBirthDate.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
-			<FormGroup controlId="formHorizontalSex">
+			<FormGroup controlId='formHorizontalSex'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Civilite
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.civility} onChange={this.handleChangeCivility.bind(this)}/>
+				<FormControl type='text' defaultValue={this.state.data.civility} onChange={this.handleChangeCivility.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
-			<FormGroup controlId="formHorizontalDiploma">
+			<FormGroup controlId='formHorizontalDiploma'>
 			  <Col componentClass={ControlLabel} sm={2}>
 				Diplome
 			  </Col>
 			  <Col sm={10}>
-				<FormControl type="text" defaultValue={this.state.data.diploma} onChange={this.handleChangeDiploma.bind(this)}/>
+				<FormControl type='text' defaultValue={this.state.data.diploma} onChange={this.handleChangeDiploma.bind(this)}/>
 			  </Col>
 			</FormGroup>
 			
 			<FormGroup>
 			  <Col smOffset={2} sm={10}>
-				<Button type="submit">
+				<Button type='submit' bsStyle='success'>
 				  Valider
 				</Button>
 			  </Col>
 			</FormGroup>
 		  </Form>
+		  </div>
 		);
 	}
 }
 
 ProfilEdit.contextTypes = {
-		router: React.PropTypes.object
-		}
+	router: React.PropTypes.object
+}
 		
 export default ProfilEdit;
